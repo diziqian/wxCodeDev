@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>倒计时自动关闭/跳转页面</title>
+    <meta charset="utf-8" />
+    <script>//作业: 改成周期性定时器实现
+    function myClose(){//任务
+        //取出time中的数,保存在n中
+        var n=parseInt(time.innerHTML);
+        n-=1//将n-1
+        if(n>0){//如果n>0
+            //将n+秒钟后自动关闭 再放回time中
+            time.innerHTML=n+"秒钟后自动关闭";
+            //再启动下一次定时器，将序号再保存在timer中
+            timer=setTimeout(arguments.callee,1000);
+        }else{//否则
+            window.opener=null;
+            this.window.close()
+        }
+    }
+    var timer=null;//保存定时器序号
+    window.onload=function(){
+        timer=setTimeout(myClose,1000);//启动一次性定时器
+    }
+    </script>
+</head>
+<body>
+<span id="time">提交成功，5秒钟后自动关闭</span><br>
+</body>
+</html>
